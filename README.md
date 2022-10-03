@@ -1,4 +1,4 @@
-# atividade1
+# Flutter App - Basic Ecommerce App - Lafyuu
 
 A new Flutter project.
 
