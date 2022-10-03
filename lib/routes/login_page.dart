@@ -15,6 +15,11 @@ class _LoginPageState extends State<LoginPage> {
 
   TextEditingController passwordController = TextEditingController();
 
+  double widthLenght = 343;
+  double heightLenght = 57;
+
+  bool selected = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,11 +29,33 @@ class _LoginPageState extends State<LoginPage> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 100),
-              child: Container(
-                alignment: Alignment.center,
-                child: Image.asset('assets/images/single_icon_blue.png'),
+            // Padding(
+            //   padding: const EdgeInsets.only(top: 100),
+            //   child: Container(
+            //     alignment: Alignment.center,
+            //     child: Image.asset('assets/images/single_icon_blue.png'),
+            //   ),
+            // ),
+            GestureDetector(
+              onTap: () {
+                setState(() {
+                  selected = !selected;
+                });
+              },
+              child: Padding(
+                padding: const EdgeInsets.only(top: 100),
+                child: Center(
+                  child: AnimatedContainer(
+                    width: selected ? 72.0 : 72.0,
+                    height: selected ? 72.0 : 72.0,
+                    color: selected ? Colors.blue[100] : Colors.white,
+                    alignment:
+                    selected ? Alignment.center : AlignmentDirectional.topCenter,
+                    duration: const Duration(seconds: 2),
+                    curve: Curves.fastOutSlowIn,
+                    child:  selected ? const FlutterLogo(size: 72) : Image.asset('assets/images/single_icon_blue.png'),
+                  ),
+                ),
               ),
             ),
             const Padding(

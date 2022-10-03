@@ -233,35 +233,29 @@ class _RegisterFormState extends State<RegisterForm> {
                   ),
                 ),
               ),
-              AnimatedContainer(
-                height: sideLenght,
-                width: sideLenght,
-                duration: const Duration(seconds: 2),
-                curve: Curves.easeIn,
-                child: Container(
-                  decoration: BoxDecoration(
-                      color: Colors.blue,
-                      borderRadius: BorderRadius.circular(10),
-                      border: Border.all(width: 2, color: Colors.blue)),
-                  child: InkWell(
-                    onTap: () async {
-                      await availableCameras().then((value) => Navigator.push(context,
-                          MaterialPageRoute(builder: (_) => CameraPage(cameras: value))));
-
-                      setState(() {
-                        sideLenght == 100 ? sideLenght = 115 : sideLenght = 100;
-                      });
-                    },
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(10),
-                      child: Image.network(
-                        imageController.text,
-                        errorBuilder: (BuildContext context, Object exception,
-                            StackTrace? stackTrace) {
-                          return Image.asset('assets/images/nophoto.png');
-                        },
-                        fit: BoxFit.cover,
-                      ),
+              Container(
+                width: 72,
+                height: 100,
+                decoration: BoxDecoration(
+                    color: Colors.blue,
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(width: 2, color: Colors.blue),),
+                child: InkWell(
+                  onTap: () async {
+                    await availableCameras().then((value) => Navigator.push(context,
+                        MaterialPageRoute(builder: (_) => CameraPage(cameras: value))));
+                    setState(() {
+                    });
+                  },
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: Image.network(
+                      imageController.text,
+                      errorBuilder: (BuildContext context, Object exception,
+                          StackTrace? stackTrace) {
+                        return Image.asset('assets/images/nophoto.png');
+                      },
+                      fit: BoxFit.cover,
                     ),
                   ),
                 ),
