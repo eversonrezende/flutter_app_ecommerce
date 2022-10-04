@@ -349,49 +349,53 @@ class _HomePageState extends State<HomePage> {
                         ],
                       ),
                     ),
-                    SizedBox(
-                      height: 200,
-                      child: Consumer<ProductCache>(
-                        builder: (context, cache, _) {
-                          return ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            itemCount: cache.list.length,
-                            itemBuilder: (context, index) {
-                              if ((cache.list[index].sale)) {
-                                return SizedBox(
-                                  width: 238,
-                                  height: 141,
-                                  child: ListTile(
-                                    leading:
-                                        Image.asset(cache.list[index].image),
-                                    title: Text(
-                                      "${cache.list[index].description}}",
-                                      style: const TextStyle(
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w700,
+                    Container(
+                      color: Colors.black12,
+                      height: 100,
+                      child: Padding(
+                        padding: const EdgeInsets.all(15),
+                        child: Consumer<ProductCache>(
+                          builder: (context, cache, _) {
+                            return ListView.builder(
+                              scrollDirection: Axis.horizontal,
+                              itemCount: cache.list.length,
+                              itemBuilder: (context, index) {
+                                if ((cache.list[index].sale)) {
+                                  return SizedBox(
+                                    width: 238,
+                                    height: 141,
+                                    child: ListTile(
+                                      leading:
+                                          Image.asset(cache.list[index].image),
+                                      title: Text(
+                                        "${cache.list[index].description}}",
+                                        style: const TextStyle(
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w700,
+                                        ),
                                       ),
-                                    ),
-                                    subtitle: Text(
-                                      "${cache.list[index].valueWithDiscount}",
-                                      style: const TextStyle(
-                                        fontSize: 12,
-                                        color: Color.fromARGB(
-                                            0xFF, 0x40, 0xBF, 0xFF),
-                                        fontWeight: FontWeight.w700,
+                                      subtitle: Text(
+                                        "${cache.list[index].valueWithDiscount}",
+                                        style: const TextStyle(
+                                          fontSize: 12,
+                                          color: Color.fromARGB(
+                                              0xFF, 0x40, 0xBF, 0xFF),
+                                          fontWeight: FontWeight.w700,
+                                        ),
                                       ),
+                                      onTap: () {
+                                        cache.index = index;
+                                        _open(context);
+                                      },
                                     ),
-                                    onTap: () {
-                                      cache.index = index;
-                                      _open(context);
-                                    },
-                                  ),
-                                );
-                              } else {
-                                return Container();
-                              }
-                            },
-                          );
-                        },
+                                  );
+                                } else {
+                                  return Container();
+                                }
+                              },
+                            );
+                          },
+                        ),
                       ),
                       // color: Colors.black26,
                     ),
@@ -443,44 +447,48 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                     ),
-                    SizedBox(
-                      height: 200,
-                      child: Consumer<ProductCache>(
-                        builder: (context, cache, _) {
-                          return ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            itemCount: cache.list.length,
-                            itemBuilder: (context, index) {
-                              return SizedBox(
-                                width: 238,
-                                height: 141,
-                                child: ListTile(
-                                  leading: Image.asset(cache.list[index].image),
-                                  title: Text(
-                                    "${cache.list[index].description}}",
-                                    style: const TextStyle(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w700,
+                    Container(
+                      height: 100,
+                      color: Colors.black12,
+                      child: Padding(
+                        padding: const EdgeInsets.all(15),
+                        child: Consumer<ProductCache>(
+                          builder: (context, cache, _) {
+                            return ListView.builder(
+                              scrollDirection: Axis.horizontal,
+                              itemCount: cache.list.length,
+                              itemBuilder: (context, index) {
+                                return SizedBox(
+                                  width: 238,
+                                  height: 141,
+                                  child: ListTile(
+                                    leading: Image.asset(cache.list[index].image),
+                                    title: Text(
+                                      "${cache.list[index].description}}",
+                                      style: const TextStyle(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w700,
+                                      ),
                                     ),
-                                  ),
-                                  subtitle: Text(
-                                    "${cache.list[index].valueWithDiscount}",
-                                    style: const TextStyle(
-                                      fontSize: 12,
-                                      color: Color.fromARGB(
-                                          0xFF, 0x40, 0xBF, 0xFF),
-                                      fontWeight: FontWeight.w700,
+                                    subtitle: Text(
+                                      "${cache.list[index].valueWithDiscount}",
+                                      style: const TextStyle(
+                                        fontSize: 12,
+                                        color: Color.fromARGB(
+                                            0xFF, 0x40, 0xBF, 0xFF),
+                                        fontWeight: FontWeight.w700,
+                                      ),
                                     ),
+                                    onTap: () {
+                                      cache.index = index;
+                                      _open(context);
+                                    },
                                   ),
-                                  onTap: () {
-                                    cache.index = index;
-                                    _open(context);
-                                  },
-                                ),
-                              );
-                            },
-                          );
-                        },
+                                );
+                              },
+                            );
+                          },
+                        ),
                       ),
                       // color: Colors.black26,
                     ),
@@ -492,108 +500,113 @@ class _HomePageState extends State<HomePage> {
         },
       ),
       drawer: Drawer(
-        child: Consumer<ProductCache>(
-          builder: (context, cache, _) {
-            return ListView.builder(
-              itemCount: cache.list.length,
-              itemBuilder: (context, index) {
-                if ((cache.list[index].sale)) {
-                  return Dismissible(
-                    key: Key('${cache.list[index]}'),
-                    background: Container(
-                      color: Colors.red,
-                      child: Padding(
-                        padding: const EdgeInsets.all(15),
-                        child: Row(
-                          children: const <Widget>[
-                            Icon(Icons.delete, color: Colors.white),
-                            Text('Move to trash',
-                                style: TextStyle(color: Colors.white)),
-                          ],
-                        ),
-                      ),
-                    ),
-                    secondaryBackground: Container(
-                      color: Colors.red,
-                      child: Padding(
-                        padding: const EdgeInsets.all(15),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: const <Widget>[
-                            Icon(Icons.delete, color: Colors.white),
-                            Text('Move to trash',
-                                style: TextStyle(color: Colors.white)),
-                          ],
-                        ),
-                      ),
-                    ),
-                    confirmDismiss: (DismissDirection direction) async {
-                      return await showDialog(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return AlertDialog(
-                            title: const Text("Delete Confirmation"),
-                            content: const Text(
-                                "Are you sure you want to delete this item?"),
-                            actions: <Widget>[
-                              ElevatedButton(
-                                  onPressed: () =>
-                                      Navigator.of(context).pop(true),
-                                  child: const Text("Delete")),
-                              ElevatedButton(
-                                onPressed: () =>
-                                    Navigator.of(context).pop(false),
-                                child: const Text("Cancel"),
-                              ),
+        child: Container(
+          height: 100,
+          color: Colors.black12,
+          child: Consumer<ProductCache>(
+            builder: (context, cache, _) {
+              return ListView.builder(
+                itemCount: cache.list.length,
+                itemBuilder: (context, index) {
+                  if ((cache.list[index].sale)) {
+                    return Dismissible(
+                      key: Key('${cache.list[index]}'),
+                      background: Container(
+                        color: Colors.red,
+                        child: Padding(
+                          padding: const EdgeInsets.all(15),
+                          child: Row(
+                            children: const <Widget>[
+                              Icon(Icons.delete, color: Colors.white),
+                              Text('Move to trash',
+                                  style: TextStyle(color: Colors.white)),
                             ],
-                          );
-                        },
-                      );
-                    },
-                    onDismissed: (DismissDirection direction) {
-                      if (direction == DismissDirection.startToEnd) {
-                        // print("Add to favorite");
-                      } else {
-                        // print('Remove item');
-                      }
-
-                      setState(() {
-                        cache.list.removeAt(index);
-                      });
-                    },
-                    child: SizedBox(
-                      width: 238,
-                      height: 141,
-                      child: ListTile(
-                        leading: Image.asset(cache.list[index].image),
-                        title: Text(
-                          "${cache.list[index].description}}",
-                          style: const TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w700,
                           ),
                         ),
-                        subtitle: Text(
-                          "${cache.list[index].valueWithDiscount}",
-                          style: const TextStyle(
-                            fontSize: 12,
-                            color: Color.fromARGB(0xFF, 0x40, 0xBF, 0xFF),
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                        onTap: () {
-                          cache.index = index;
-                          _open(context);
-                        },
                       ),
-                    ),
-                  );
-                } else {
-                  return Container();
-                }
-              },
-            );
-          },
+                      secondaryBackground: Container(
+                        color: Colors.red,
+                        child: Padding(
+                          padding: const EdgeInsets.all(15),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: const <Widget>[
+                              Icon(Icons.delete, color: Colors.white),
+                              Text('Move to trash',
+                                  style: TextStyle(color: Colors.white)),
+                            ],
+                          ),
+                        ),
+                      ),
+                      confirmDismiss: (DismissDirection direction) async {
+                        return await showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: const Text("Delete Confirmation"),
+                              content: const Text(
+                                  "Are you sure you want to delete this item?"),
+                              actions: <Widget>[
+                                ElevatedButton(
+                                    onPressed: () =>
+                                        Navigator.of(context).pop(true),
+                                    child: const Text("Delete")),
+                                ElevatedButton(
+                                  onPressed: () =>
+                                      Navigator.of(context).pop(false),
+                                  child: const Text("Cancel"),
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                      },
+                      onDismissed: (DismissDirection direction) {
+                        if (direction == DismissDirection.startToEnd) {
+                          // print("Add to favorite");
+                        } else {
+                          // print('Remove item');
+                        }
+
+                        setState(() {
+                          cache.list.removeAt(index);
+                        });
+                      },
+                      child: Container(
+                        color: Colors.white,
+                        // width: 238,
+                        height: 100,
+                        child: ListTile(
+                          leading: Image.asset(cache.list[index].image),
+                          title: Text(
+                            "${cache.list[index].description}}",
+                            style: const TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                          subtitle: Text(
+                            "${cache.list[index].valueWithDiscount}",
+                            style: const TextStyle(
+                              fontSize: 12,
+                              color: Color.fromARGB(0xFF, 0x40, 0xBF, 0xFF),
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                          onTap: () {
+                            cache.index = index;
+                            _open(context);
+                          },
+                        ),
+                      ),
+                    );
+                  } else {
+                    return Container();
+                  }
+                },
+              );
+            },
+          ),
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
